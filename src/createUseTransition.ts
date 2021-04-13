@@ -1,7 +1,5 @@
 import * as React from "react";
 
-type Maybe<T> = T | null | undefined;
-
 export function createUseTransition(
   batchedUpdates = (run: () => void) => run()
 ) {
@@ -9,10 +7,10 @@ export function createUseTransition(
    * Returns a transition state that holds the old value until the loading of the new value has finished.
    */
   return function useTransition<TType>(
-    data: Maybe<TType>,
+    data: TType,
     isLoading: boolean,
     shouldShowLoadingIndicatorThreshold = 300
-  ): [boolean, Maybe<TType>] {
+  ): [boolean, TType] {
     const [, triggerStateUpdate] = React.useState(1);
     const ref = React.useRef({
       data,
