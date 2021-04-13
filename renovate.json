@@ -1,5 +1,16 @@
 {
-  "extends": [
-    "config:base"
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "postUpdateOptions": ["yarnDedupeFewer"],
+  "packageRules": [
+    {
+      "groupName": "react",
+      "packagePatterns": [
+        "@types/react",
+        "@types/react-dom",
+        "react",
+        "react-dom"
+      ]
+    }
   ]
 }
