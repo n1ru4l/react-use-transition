@@ -96,8 +96,14 @@ test("updates isLoading to 'true' after threshold is reached after entering load
   jest.runAllTimers();
 });
 
-test("updates isLoading to 'false' and data to the latest value after leaving the loading state.", () => {
+test("updates isLoading to 'false' and data to the latest value after leaving the loading state.", async () => {
+  expect.assertions(8);
   jest.useFakeTimers();
+
+  let onThirdRender: () => void;
+  const didRenderForThirdTime = new Promise<void>(
+    (res) => (onThirdRender = res)
+  );
 
   let renderCount = 0;
   const TestComponent = (state: {
@@ -117,6 +123,7 @@ test("updates isLoading to 'false' and data to the latest value after leaving th
     if (renderCount === 3) {
       expect(isLoading).toEqual(true);
       expect(data).toEqual("foo");
+      onThirdRender();
     }
     if (renderCount === 4) {
       expect(isLoading).toEqual(false);
@@ -127,5 +134,7 @@ test("updates isLoading to 'false' and data to the latest value after leaving th
   state = render(<TestComponent isLoading={false} data="foo" />);
   state.rerender(<TestComponent isLoading={true} data={null} />);
   jest.runAllTimers();
+  // we wait until the third render occurred for our next update to ensure the component is consistently rendered with every value.
+  await didRenderForThirdTime;
   state.rerender(<TestComponent isLoading={false} data={"hi"} />);
 });
