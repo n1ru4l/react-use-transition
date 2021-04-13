@@ -1,7 +1,9 @@
 {
-  "name": "@n1ru4l/use-transition",
+  "name": "@n1ru4l/react-use-transition",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
+  "module": "main.js",
+  "main": "cjs/main.js",
   "repository": "https://github.com/n1ru4l/use-transition",
   "author": "n1ru4l",
   "license": "MIT",
@@ -42,5 +44,13 @@
     "build": "yarn build:cjs && yarn build:esm",
     "test": "jest",
     "type-check": "tsc"
-  }
+  },
+  "keywords": [
+    "react",
+    "hook",
+    "transition",
+    "query",
+    "fetch",
+    "suspense"
+  ]
 }
