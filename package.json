@@ -1,9 +1,6 @@
 {
   "name": "@n1ru4l/react-use-transition",
-  "version": "0.1.0",
-  "type": "module",
-  "module": "main.js",
-  "main": "cjs/main.js",
+  "version": "0.4.0",
   "repository": "https://github.com/n1ru4l/use-transition",
   "author": "n1ru4l",
   "license": "MIT",
@@ -30,6 +27,13 @@
   "peerDependencies": {
     "react": "17.x.x"
   },
+  "type": "module",
+  "types": "./main.d.ts",
+  "typescript": {
+    "definition": "./main.d.ts"
+  },
+  "module": "./main.js",
+  "main": "./cjs/main.js",
   "exports": {
     ".": {
       "import": "./main.js",
@@ -54,6 +58,7 @@
     "suspense"
   ],
   "publishConfig": {
-    "directory": "dist"
+    "directory": "dist",
+    "access": "public"
   }
 }
