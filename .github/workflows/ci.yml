@@ -22,9 +22,9 @@ jobs:
         run: yarn
       - name: Test
         run: yarn test
-      - name: Test
+      - name: Build
         run: yarn build
-      - name: Test
+      - name: Type Check
         run: yarn type-check
       - name: Configure Git Credentials
         if: github.repository == 'n1ru4l/react-use-transition'
