@@ -1,6 +1,6 @@
 {
   "name": "@n1ru4l/react-use-transition",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "module",
   "module": "main.js",
   "main": "cjs/main.js",
@@ -52,5 +52,8 @@
     "query",
     "fetch",
     "suspense"
-  ]
+  ],
+  "publishConfig": {
+    "directory": "dist"
+  }
 }
