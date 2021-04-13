@@ -49,7 +49,8 @@
     "build:esm": "rollup -c",
     "build": "rimraf dist && yarn build:cjs && yarn build:esm && cpy README.md ./dist",
     "test": "jest",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "release": "changeset publish"
   },
   "keywords": [
     "react",
