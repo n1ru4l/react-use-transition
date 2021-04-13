@@ -27,8 +27,8 @@ export function createUseTransition(
       let timeout: NodeJS.Timeout | null = null;
       if (ref.current.previousIsLoading !== isLoading && isLoading) {
         timeout = setTimeout(() => {
-          ref.current.shouldShowLoadingIndicator = true;
           batchedUpdates(() => {
+            ref.current.shouldShowLoadingIndicator = true;
             triggerStateUpdate((i) => i + 1);
           });
         }, shouldShowLoadingIndicatorThreshold);
