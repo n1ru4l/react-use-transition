@@ -26,6 +26,8 @@ yarn install -E @n1ru4l/react-use-transition
 
 ## Usage
 
+[Check out the code sandbox](https://codesandbox.io/s/usetransition-85v3c?file=/src/index.js)
+
 ```tsx
 import * as React from "react";
 import { unstable_batchedUpdates } from "react-dom"; // or react-native (your react reconciler)
