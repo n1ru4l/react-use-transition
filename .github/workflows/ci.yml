@@ -39,7 +39,7 @@ jobs:
           yarn version --no-git-tag-version --prerelease --preid ${GITHUB_SHA::8}
           yarn publish --tag canary
           PACKAGE_VERSION=$(node -e "console.log(require('./package.json').version)")
-          echo '::set-output name=PACKAGE_VERSION::$PACKAGE_VERSION'
+          echo "::set-output name=PACKAGE_VERSION::$PACKAGE_VERSION"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Create commit comment
