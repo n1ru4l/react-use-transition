@@ -14,7 +14,7 @@ beforeEach(() => {
 test("returns the current value for a non-loading object", () => {
   expect.assertions(2);
   const TestComponent = () => {
-    const [isLoading, data] = useTransition({ hello: "hi" }, false);
+    const [data, isLoading] = useTransition({ hello: "hi" }, false);
     expect(isLoading).toEqual(false);
     expect(data).toEqual({ hello: "hi" });
     return null;
@@ -25,7 +25,7 @@ test("returns the current value for a non-loading object", () => {
 test("returns the loading value for a loading object", () => {
   expect.assertions(2);
   const TestComponent = () => {
-    const [isLoading, data] = useTransition({ hello: "hi" }, true);
+    const [data, isLoading] = useTransition({ hello: "hi" }, true);
     expect(isLoading).toEqual(true);
     expect(data).toEqual({ hello: "hi" });
     return null;
@@ -36,7 +36,7 @@ test("returns the loading value for a loading object", () => {
 test("returns the loading value for a loading object", () => {
   expect.assertions(2);
   const TestComponent = () => {
-    const [isLoading, data] = useTransition({ hello: "hi" }, true);
+    const [data, isLoading] = useTransition({ hello: "hi" }, true);
     expect(isLoading).toEqual(true);
     expect(data).toEqual({ hello: "hi" });
     return null;
@@ -52,7 +52,7 @@ test("returns the correct value after loading has finished", () => {
     data: string | null;
   }) => {
     renderCount = renderCount + 1;
-    const [isLoading, data] = useTransition(state.data, state.isLoading);
+    const [data, isLoading] = useTransition(state.data, state.isLoading);
     if (renderCount === 1) {
       expect(isLoading).toEqual(true);
       expect(data).toEqual(null);
@@ -76,7 +76,7 @@ test("updates isLoading to 'true' after threshold is reached after entering load
     data: string | null;
   }) => {
     renderCount = renderCount + 1;
-    const [isLoading, data] = useTransition(state.data, state.isLoading);
+    const [data, isLoading] = useTransition(state.data, state.isLoading);
     if (renderCount === 1) {
       expect(isLoading).toEqual(false);
       expect(data).toEqual("foo");
@@ -111,7 +111,7 @@ test("updates isLoading to 'false' and data to the latest value after leaving th
     data: string | null;
   }) => {
     renderCount = renderCount + 1;
-    const [isLoading, data] = useTransition(state.data, state.isLoading);
+    const [data, isLoading] = useTransition(state.data, state.isLoading);
     if (renderCount === 1) {
       expect(isLoading).toEqual(false);
       expect(data).toEqual("foo");

@@ -18,7 +18,7 @@ const useTransition = createUseTransition(unstable_batchedUpdates);
 const DataFetchingComponent = ({ postId }) => {
   const props = useQuery("/foo/:postId", { postId });
   const isLoading = !props.error && !props.data; // Depending on the library it could also be props.isLoading :)
-  const [showLoadingIndicator, cachedProps] = useTransition(props, isLoading);
+  const [cachedProps, showLoadingIndicator] = useTransition(props, isLoading);
 
   return (
     <>

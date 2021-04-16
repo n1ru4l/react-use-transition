@@ -30,7 +30,7 @@ export function createUseTransition(
      * Threshold after which showing a loading indicator might be useful.
      */
     shouldShowLoadingIndicatorThreshold = 300
-  ): [boolean, TType] {
+  ): [TType, boolean] {
     const [, triggerStateUpdate] = React.useState(1);
     const ref = React.useRef({
       data,
@@ -64,9 +64,9 @@ export function createUseTransition(
     }, [isLoading, triggerStateUpdate, shouldShowLoadingIndicatorThreshold]);
 
     if (!isLoading) {
-      return [isLoading, data];
+      return [data, isLoading];
     }
 
-    return [ref.current.shouldShowLoadingIndicator, ref.current.data];
+    return [ref.current.data, ref.current.shouldShowLoadingIndicator];
   };
 }
