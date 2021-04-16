@@ -1,14 +1,34 @@
 # @n1ru4l/react-use-transition
 
-Suspense like transitions without experimental react features today. Totally framework agnostic.
+[![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](http://www.typescriptlang.org/)
+[![npm](https://img.shields.io/npm/v/@n1ru4l/react-use-transition.svg)](https://www.npmjs.com/package/@n1ru4l/react-use-transition)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/@n1ru4l/react-use-transition)](https://bundlephobia.com/result?p=@n1ru4l/react-use-transition)
+[![Dependencies](https://img.shields.io/david/n1ru4l/react-use-transition)](https://www.npmjs.com/package/@n1ru4l/react-use-transition)
+[![NPM](https://img.shields.io/npm/dm/@n1ru4l/react-use-transition.svg)](https://www.npmjs.com/package/@n1ru4l/react-use-transition)
 
-Use it together with your favorite GraphQL client such as `apollo`, `relay`, `urql` or any other data fetching library.
+Suspense like transitions without experimental react features today. For any fetching library.
 
-# Usage
+## Why?
+
+Ever experienced flashy transitions where content disappears after triggering navigation, a loading state shows up for like 10 milliseconds, disappears and a new page is rendered? Did you wonder why it was even necessary to show a loading page in the first place?
+
+That is exactly what this micro library tries to solve. Cache the previous result in case a transition occurs and only show some kind of loading indicator after a certain threshold (by default 300ms) has been reached without the new data arriving.
+
+The concept is taken from the experimental `React.useTransition` which is not stable as today and only available as an experimental build. This hook however works without React concurrent mode.
+
+Use it together with your favorite GraphQL client such as `relay` or `urql` or any other data fetching library.
+
+## Install
+
+```bash
+yarn install -E @n1ru4l/react-use-transition
+```
+
+## Usage
 
 ```tsx
 import * as React from "react";
-import { unstable_batchedUpdates } from "react-dom"; // or react-native
+import { unstable_batchedUpdates } from "react-dom"; // or react-native (your react reconciler)
 import { createUseTransition } from "@n1ru4l/react-use-transition";
 
 import { useQuery } from "your-fetching-library-of-choice";
@@ -16,18 +36,17 @@ import { useQuery } from "your-fetching-library-of-choice";
 const useTransition = createUseTransition(unstable_batchedUpdates);
 
 const DataFetchingComponent = ({ postId }) => {
-  const props = useQuery("/foo/:postId", { postId });
-  const isLoading = !props.error && !props.data; // Depending on the library it could also be props.isLoading :)
-  const [cachedProps, showLoadingIndicator] = useTransition(props, isLoading);
+  const { data, isLoading } = useQuery("/foo/:postId", { postId });
+  const [cachedData, showLoadingIndicator] = useTransition(data, isLoading);
 
   return (
     <>
       {showLoadingIndicator ? <Spinner /> : null}
-      {cachedProps ? (
-        cachedProps.error ? (
-          <ErrorRenderer error={cachedProps.error} />
+      {cachedData ? (
+        cachedData.error ? (
+          <ErrorRenderer error={cachedData.error} />
         ) : (
-          <PostRenderer post={props.data} />
+          <PostRenderer post={cachedData.post} />
         )
       ) : null}
     </>
