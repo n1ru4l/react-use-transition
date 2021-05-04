@@ -5,8 +5,8 @@
   "author": "n1ru4l",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "7.13.16",
-    "@babel/preset-env": "7.13.15",
+    "@babel/core": "7.14.0",
+    "@babel/preset-env": "7.14.1",
     "@babel/preset-react": "7.13.13",
     "@babel/preset-typescript": "7.13.0",
     "@changesets/cli": "2.16.0",
