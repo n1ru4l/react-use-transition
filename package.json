@@ -5,10 +5,10 @@
   "author": "n1ru4l",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "7.14.3",
-    "@babel/preset-env": "7.14.2",
+    "@babel/core": "7.25.9",
+    "@babel/preset-env": "7.25.9",
     "@babel/preset-react": "7.13.13",
-    "@babel/preset-typescript": "7.13.0",
+    "@babel/preset-typescript": "7.25.9",
     "@changesets/cli": "2.16.0",
     "@rollup/plugin-typescript": "8.2.1",
     "@testing-library/react": "11.2.7",
